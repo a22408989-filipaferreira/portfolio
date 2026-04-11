@@ -92,10 +92,10 @@ class WorkExperienceAdmin(admin.ModelAdmin):
 # CAPSTONE PROJECT
 @admin.register(CapstoneProject)
 class CapstoneProjectAdmin(admin.ModelAdmin):
-    list_display = ("title", "course", "year", "area")
-    list_filter = ("course", "year", "area")
-    search_fields = ("title", "summary", "authors", "keywords", "area", "course__name")
-    filter_horizontal = ("teachers", "techs")
+    list_display = ("title", "course", "year", "areas")
+    list_filter = ("course", "year")
+    search_fields = ("title", "summary", "authors", "keywords", "areas")
+    filter_horizontal = ("techs",)
 
 
 # MAKING OF

@@ -184,24 +184,22 @@ class WorkExperience(models.Model):
 
 # CAPSTONE PROJECT MODEL (=> TFC)
 class CapstoneProject(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=200)
     summary = models.TextField()
-    authors = models.CharField(max_length=200, blank=True, null=True)
+    authors = models.CharField(max_length=255, blank=True, null=True)
+    teachers = models.CharField(max_length=255, blank=True, null=True)
     year = models.IntegerField()
-    repository_url = models.URLField(blank=True, null=True)
-    image = models.ImageField(upload_to="capstone/", blank=True, null=True)
-    keywords = models.CharField(max_length=200, blank=True, null=True)
-    area = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    pdf_url = models.URLField(blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
+    keywords = models.TextField(blank=True, null=True)
+    areas = models.TextField(blank=True, null=True)
+    rating = models.IntegerField(blank=True, null=True)
 
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
         related_name="capstone_projects"
-    )
-    teachers = models.ManyToManyField(
-        Teacher,
-        related_name="capstone_projects",
-        blank=True
     )
     techs = models.ManyToManyField(
         Tech,
