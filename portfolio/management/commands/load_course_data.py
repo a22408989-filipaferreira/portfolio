@@ -70,22 +70,8 @@ class Command(BaseCommand):
             uc_name = uc.get("curricularUnitName") or uc.get("name") or ""
             uc_code = uc.get("curricularIUnitReadableCode") or uc.get("readableCode") or ""
             uc_ects = uc.get("ects") or 0
-            uc_year = uc.get("year")
+            uc_year = uc.get("year") or 0
             uc_semester = uc.get("semester")
-
-            if isinstance(uc_year, int):
-                year_value = uc_year
-            else:
-                text = str(uc_year)
-
-                if "1" in text:
-                    year_value = 1
-                elif "2" in text:
-                    year_value = 2
-                elif "3" in text:
-                    year_value = 3
-                else:
-                    year_value = 0
 
             if isinstance(uc_semester, int):
                 semester_value = uc_semester
@@ -127,7 +113,7 @@ class Command(BaseCommand):
                 defaults={
                     "acronym": uc_code,
                     "ects": int(uc_ects),
-                    "year": year_value,
+                    "year": int(uc_year),
                     "semester": semester_value,
                     "description": description,
                     "syllabus_url": syllabus_url,
