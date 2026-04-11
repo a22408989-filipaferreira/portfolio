@@ -15,6 +15,16 @@ class Command(BaseCommand):
 
         tfcs = data.get("TFCs_2025", [])
 
+        # because there can't be a course without an associated profile
+        profile = Profile.objects.first()
+
+        if not profile:
+            profile = Profile.objects.create(
+                name="Default Profile",
+                email="default@email.com",
+                location="Portugal"
+            )
+
         loaded_count = 0
 
         for item in tfcs:
