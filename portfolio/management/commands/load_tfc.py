@@ -1,7 +1,7 @@
 import json
 
 from django.core.management.base import BaseCommand
-from portfolio.models import Course, CapstoneProject, Tech
+from portfolio.models import Course, CapstoneProject, Tech, Profile
 
 
 class Command(BaseCommand):
@@ -52,7 +52,7 @@ class Command(BaseCommand):
                 defaults={
                     "summary": item.get("sumario", "").strip(),
                     "authors": item.get("autores", "").strip(),
-                    "advisors": item.get("orientadores", "").strip(),
+                    "teachers": item.get("orientadores", "").strip(),
                     "email": item.get("email", "").split("\n")[0].strip(),
                     "pdf_url": item.get("pdf", "").strip(),
                     "image_url": item.get("imagem", "").strip(),
