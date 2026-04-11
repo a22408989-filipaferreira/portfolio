@@ -1,7 +1,7 @@
 import json
 
 from django.core.management.base import BaseCommand
-from portfolio.models import Course, CapstoneProject, Tech, Profile
+from portfolio.models import Course, CapstoneProject, Tech, Profile, Teacher
 
 
 class Command(BaseCommand):
@@ -41,7 +41,7 @@ class Command(BaseCommand):
                     "degree": "Bachelor",
                     "total_ects": 180,
                     "scientific_area": "",
-                    "profile_id": 1,  # ajustar se necessário
+                    "profile_id": profile.id,
                 }
             )
 
@@ -52,7 +52,6 @@ class Command(BaseCommand):
                 defaults={
                     "summary": item.get("sumario", "").strip(),
                     "authors": item.get("autores", "").strip(),
-                    "teachers": item.get("orientadores", "").strip(),
                     "email": item.get("email", "").split("\n")[0].strip(),
                     "pdf_url": item.get("pdf", "").strip(),
                     "image_url": item.get("imagem", "").strip(),
@@ -69,6 +68,14 @@ class Command(BaseCommand):
                     "rating": item.get("rating", 0),
                 }
             )
+
+            teachers = item.get("orientadores", "").split("Em parceria com")[0].strip()
+
+            if teachers:
+                for name in teachers.split(","):
+                    clean_name = name.strip()
+                    if clean_name:
+                        Teacher.objects.get_or_create(name=clean_name)
 
             if created:
                 for tech_name in item.get("tecnologias", []):
