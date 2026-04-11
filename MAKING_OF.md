@@ -2,7 +2,8 @@
 
 ## V1 — Modelo inicial (DER em papel)
 
-![V1 - DER inicial](images/v1.jpg)
+![V1 - DER inicial](images/v1-1.jpeg)
+![V1 - DER inicial](images/v1-2.jpeg)
 
 ### O que fiz
 Comecei por um DER completo em papel onde tentei representar todo o contexto académico:
@@ -33,7 +34,7 @@ Comecei por um DER completo em papel onde tentei representar todo o contexto aca
 
 ## V2 — Refinamento e reorganização
 
-![V2 - Modelo refinado](images/v2.jpg)
+![V2 - Modelo refinado](images/v2.jpeg)
 
 ### O que alterei
 Na V2 reorganizei o modelo e introduzi o **Profile** como entidade central.
@@ -69,7 +70,10 @@ Passei a ter:
 
 ## V3 — Modelo final (implementação em Django)
 
-![V3 - Modelo final](images/v3.jpg)
+![V3 - Modelo final](images/v3-1.jpeg)
+![V3 - Modelo final](images/v3-2.jpeg)
+![V3 - Modelo final](images/v3-3.jpeg)
+![V3 - Modelo final](images/v3-4.jpeg)
 
 ### O que fiz
 Na V3 simplifiquei o modelo para implementação prática em Django.
