@@ -1,0 +1,32 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Projects</h2>
+
+<section>
+    {% for project in projects %}
+        <article>
+            <h3>{{ project.title }}</h3>
+
+            {% if project.image %}
+                <img src="{{ project.image.url }}" width="200">
+            {% endif %}
+
+            <p>{{ project.description }}</p>
+
+            <p><strong>Subject:</strong> {{ project.subject.name }}</p>
+
+            <p><strong>Techs:</strong>
+                {% for tech in project.techs.all %}
+                    {{ tech.name }}
+                {% empty %}
+                    none
+                {% endfor %}
+            </p>
+
+        </article>
+    {% endfor %}
+</section>
+
+{% endblock %}

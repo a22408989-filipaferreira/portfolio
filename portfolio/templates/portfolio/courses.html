@@ -1,0 +1,28 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Courses</h2>
+
+<section>
+    {% for course in courses %}
+        <article>
+            <h3>{{ course.name }}</h3>
+
+            <p><strong>Degree:</strong> {{ course.degree }}</p>
+            <p><strong>ECTS:</strong> {{ course.total_ects }}</p>
+
+            <p><strong>Subjects:</strong></p>
+            <ul>
+                {% for subject in course.subjects.all %}
+                    <li>{{ subject.name }}</li>
+                {% empty %}
+                    <li>No subjects</li>
+                {% endfor %}
+            </ul>
+
+        </article>
+    {% endfor %}
+</section>
+
+{% endblock %}

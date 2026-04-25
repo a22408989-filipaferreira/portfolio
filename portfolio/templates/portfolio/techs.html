@@ -1,0 +1,25 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Technologies</h2>
+
+<section>
+    {% for tech in techs %}
+        <article>
+            <h3>{{ tech.name }}</h3>
+
+            {% if tech.logo %}
+                <img src="{{ tech.logo.url }}" width="100">
+            {% endif %}
+
+            <p>{{ tech.description }}</p>
+
+            {% if tech.website %}
+                <a href="{{ tech.website }}">Website</a>
+            {% endif %}
+        </article>
+    {% endfor %}
+</section>
+
+{% endblock %}
