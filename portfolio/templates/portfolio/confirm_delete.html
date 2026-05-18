@@ -1,0 +1,28 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>{{ title }}</h1>
+
+    <p>
+        Tem a certeza que pretende apagar
+        "<strong>{{ object }}</strong>"?
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="form-btn delete-btn-big">
+            Sim, apagar
+        </button>
+
+        <a href="{% url back_url %}" class="form-btn cancel-btn">
+            Cancelar
+        </a>
+    </form>
+
+</div>
+
+{% endblock %}

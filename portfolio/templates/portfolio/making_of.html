@@ -1,0 +1,78 @@
+{% extends "portfolio/base.html" %}
+{% load markdownify %}
+
+{% block content %}
+
+<h1>Making-Of</h1>
+
+<a href="{% url 'making_of_create' %}" class="create-btn">
+    Criar entrada
+</a>
+
+{% for entry in entries %}
+
+<div class="card">
+
+    <h2>{{ entry.version }}</h2>
+
+    <p>
+        <strong>Data:</strong>
+        {{ entry.created_at }}
+    </p>
+
+    {% if entry.project %}
+        <p>
+            <strong>Projeto:</strong>
+            {{ entry.project.title }}
+        </p>
+    {% endif %}
+
+    {% if entry.subject %}
+        <p>
+            <strong>Disciplina:</strong>
+            {{ entry.subject.name }}
+        </p>
+    {% endif %}
+
+    <h3>Decisions</h3>
+    <div>
+        {{ entry.decisions|markdownify }}
+    </div>
+
+    <h3>Corrections</h3>
+    <div>
+        {{ entry.corrections|markdownify }}
+    </div>
+
+    <h3>Justification</h3>
+    <div>
+        {{ entry.justification|markdownify }}
+    </div>
+
+    {% if entry.notebook_photo %}
+        <img
+            src="{{ entry.notebook_photo.url }}"
+            alt="{{ entry.alt_text }}"
+            style="width: 300px; border-radius: 12px; margin-top: 15px;"
+        >
+    {% endif %}
+
+    <br><br>
+
+    <a href="{% url 'making_of_edit' entry.id %}" class="action-btn edit-btn">
+        Editar
+    </a>
+
+    <a href="{% url 'making_of_delete' entry.id %}" class="action-btn delete-btn">
+        Apagar
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>Ainda não existem entradas no Making-Of.</p>
+
+{% endfor %}
+
+{% endblock %}

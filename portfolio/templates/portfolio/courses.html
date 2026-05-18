@@ -4,6 +4,8 @@
 
 <h2>Courses</h2>
 
+<a href="{% url 'course_create' %}" class="create-btn">Criar nova formação</a>
+
 <section>
     {% for course in courses %}
         <article>
@@ -20,6 +22,9 @@
                     <li>No subjects</li>
                 {% endfor %}
             </ul>
+
+            <a href="{% url 'course_edit' course.id %}" class="action-btn edit-btn">Editar</a>
+            <a href="{% url 'course_delete' course.id %}" class="action-btn delete-btn">Apagar</a>
 
         </article>
     {% endfor %}

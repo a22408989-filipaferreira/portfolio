@@ -59,6 +59,12 @@ class Teacher(models.Model):
     def __str__(self):
         return self.name
 
+class TechType(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 # TECH MODEL
 class Tech(models.Model):
     name = models.CharField(max_length=100)
@@ -66,6 +72,14 @@ class Tech(models.Model):
     website = models.URLField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     category = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    tech_type = models.ForeignKey(
+        TechType,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="techs"
+    )
 
     def __str__(self):
         return self.name

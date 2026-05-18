@@ -148,3 +148,146 @@ article section ul li:hover {
 article section ul li a:hover {
     transform: scale(1.1);
 }
+
+/* BUTTON CREATE */
+.create-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 18px;
+    background-color: #1e293b;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.create-btn:hover {
+    background-color: #334155;
+    transform: translateY(-1px);
+}
+
+
+/* BUTTONS EDIT/DELETE */
+.action-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+/* EDIT */
+.edit-btn {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.edit-btn:hover {
+    background-color: #bfdbfe;
+}
+
+/* DELETE */
+.delete-btn {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background-color: #fecaca;
+}
+
+/* FORM CONTAINER */
+.form-container {
+    max-width: 700px;
+    margin: 60px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* TITLES */
+.form-container h1 {
+    margin-bottom: 30px;
+    color: #0f172a;
+}
+
+/* LABELS */
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 18px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* INPUTS */
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #f8fafc;
+}
+
+/* TEXTAREA */
+.form-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* MULTISELECT */
+.form-container select[multiple] {
+    height: 120px;
+}
+
+/* BUTTONS */
+.form-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+/* SAVE */
+.save-btn {
+    background-color: #1e293b;
+    color: white;
+}
+
+.save-btn:hover {
+    background-color: #334155;
+}
+
+/* CANCEL */
+.cancel-btn {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    margin-left: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: #cbd5e1;
+}
+
+/* DELETE */
+.delete-btn-big {
+    background-color: #dc2626;
+    color: white;
+}
+
+.delete-btn-big:hover {
+    background-color: #b91c1c;
+}
