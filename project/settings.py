@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "portfolio",
     'escola',
     'markdownify.apps.MarkdownifyConfig',
+    'accounts',
+    'artigos',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +143,9 @@ MARKDOWNIFY = {
         ],
     },
 }
+
+LOGIN_REDIRECT_URL = "profile"
+LOGOUT_REDIRECT_URL = "profile"
+LOGIN_URL = "login"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

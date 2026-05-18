@@ -19,6 +19,18 @@
         <a href="{% url 'navigation_map' %}">Navigation Map</a>
         <a href="{% url 'github' %}">GitHub</a>
         <a href="{% url 'making_of' %}">Making-Of</a>
+        <a href="{% url 'articles' %}">Articles</a>
+
+        {% if user.is_authenticated %}
+            <span class="nav-user">Olá, {{ user.username }}</span>
+
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
     </nav>
 </header>
 

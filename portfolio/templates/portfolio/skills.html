@@ -4,7 +4,11 @@
 
 <h2>Skills</h2>
 
-<a href="{% url 'skill_create' %}" class="create-btn">Criar nova competência</a>
+{% if is_gestor %}
+    <a href="{% url 'skill_create' %}" class="create-btn">
+        Criar nova competência
+    </a>
+{% endif %}
 
 <section>
     {% for skill in skills %}
@@ -13,8 +17,10 @@
             <p>{{ skill.description }}</p>
             <p><strong>Level:</strong> {{ skill.level }}</p>
 
-            <a href="{% url 'skill_edit' skill.id %}" class="action-btn edit-btn">Editar</a>
-            <a href="{% url 'skill_delete' skill.id %}" class="action-btn delete-btn">Apagar</a>
+            {% if is_gestor %}
+                <a href="{% url 'skill_edit' skill.id %}" class="action-btn edit-btn">Editar</a>
+                <a href="{% url 'skill_delete' skill.id %}" class="action-btn delete-btn">Apagar</a>
+            {% endif %}
         </article>
     {% endfor %}
 </section>

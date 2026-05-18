@@ -291,3 +291,26 @@ article section ul li a:hover {
 .delete-btn-big:hover {
     background-color: #b91c1c;
 }
+
+.nav-user {
+    color: #e2e8f0;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.logout-form {
+    display: inline;
+}
+
+.logout-btn {
+    background: transparent;
+    color: #e2e8f0;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    color: white;
+}

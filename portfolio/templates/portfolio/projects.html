@@ -4,9 +4,11 @@
 
 <h2>Projects</h2>
 
-<a href="{% url 'project_create' %}" class="create-btn">
-    Criar novo projeto
-</a>
+{% if is_gestor %}
+    <a href="{% url 'project_create' %}" class="create-btn">
+        Criar novo projeto
+    </a>
+{% endif %}
 
 <section>
     {% for project in projects %}
@@ -29,13 +31,10 @@
                 {% endfor %}
             </p>
 
-            <a href="{% url 'project_edit' project.id %}" class="action-btn edit-btn">
-                Editar
-            </a>
-
-            <a href="{% url 'project_delete' project.id %}" class="action-btn delete-btn">
-                Apagar
-            </a>
+            {% if is_gestor %}
+                <a href="{% url 'project_edit' project.id %}" class="action-btn edit-btn">Editar</a>
+                <a href="{% url 'project_delete' project.id %}" class="action-btn delete-btn">Apagar</a>
+            {% endif %}
 
         </article>
     {% endfor %}

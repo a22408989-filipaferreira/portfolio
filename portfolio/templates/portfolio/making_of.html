@@ -5,9 +5,11 @@
 
 <h1>Making-Of</h1>
 
-<a href="{% url 'making_of_create' %}" class="create-btn">
-    Criar entrada
-</a>
+{% if is_gestor %}
+    <a href="{% url 'making_of_create' %}" class="create-btn">
+        Criar entrada
+    </a>
+{% endif %}
 
 {% for entry in entries %}
 
@@ -58,14 +60,12 @@
     {% endif %}
 
     <br><br>
-
-    <a href="{% url 'making_of_edit' entry.id %}" class="action-btn edit-btn">
-        Editar
-    </a>
-
-    <a href="{% url 'making_of_delete' entry.id %}" class="action-btn delete-btn">
-        Apagar
-    </a>
+    
+    {% if is_gestor %}
+        <br><br>
+        <a href="{% url 'making_of_edit' entry.id %}" class="action-btn edit-btn">Editar</a>
+        <a href="{% url 'making_of_delete' entry.id %}" class="action-btn delete-btn">Apagar</a>
+   {% endif %}
 
 </div>
 

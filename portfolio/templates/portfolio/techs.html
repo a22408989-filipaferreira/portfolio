@@ -4,7 +4,11 @@
 
 <h2>Technologies</h2>
 
-<a href="{% url 'tech_create' %}" class="create-btn">Criar nova tecnologia</a>
+{% if is_gestor %}
+    <a href="{% url 'tech_create' %}" class="create-btn">
+        Criar nova tecnologia
+    </a>
+{% endif %}
 
 <section>
     {% for tech in techs %}
@@ -21,8 +25,10 @@
                 <a href="{{ tech.website }}">Website</a>
             {% endif %}
 
-            <a href="{% url 'tech_edit' tech.id %}" class="action-btn edit-btn">Editar</a>
-            <a href="{% url 'tech_delete' tech.id %}" class="action-btn delete-btn">Apagar</a>
+             {% if is_gestor %}
+                <a href="{% url 'tech_edit' tech.id %}" class="action-btn edit-btn">Editar</a>
+                <a href="{% url 'tech_delete' tech.id %}" class="action-btn delete-btn">Apagar</a>
+            {% endif %}
         </article>
     {% endfor %}
 </section>

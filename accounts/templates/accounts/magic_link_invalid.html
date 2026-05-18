@@ -1,0 +1,15 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+    <h1>Link inválido</h1>
+
+    <p>O link mágico é inválido ou expirou.</p>
+
+    <a href="{% url 'magic_link_request' %}" class="form-btn save-btn">
+        Pedir novo link
+    </a>
+</div>
+
+{% endblock %}

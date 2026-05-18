@@ -1,0 +1,44 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h1>Artigos</h1>
+
+{% if user.is_authenticated and user.groups.all %}
+    <a href="{% url 'article_create' %}" class="create-btn">
+        Criar artigo
+    </a>
+{% endif %}
+
+{% for article in articles %}
+
+<div class="card">
+
+    <h2>
+        <a href="{% url 'article_detail' article.id %}">
+            {{ article.title }}
+        </a>
+    </h2>
+
+    <p>{{ article.text|truncatewords:30 }}</p>
+
+    <p>
+        <strong>Autor:</strong>
+        {{ article.author.username }}
+    </p>
+
+    <p>
+        {{ article.likes.count }} likes
+    </p>
+
+    {% if request.user == article.author %}
+        <a href="{% url 'article_edit' article.id %}" class="action-btn edit-btn">
+            Editar
+        </a>
+    {% endif %}
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

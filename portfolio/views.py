@@ -1,33 +1,42 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, Project, Skill, Tech, Course, MakingOf
 from .forms import ProjectForm, TechForm, SkillForm, CourseForm, MakingOfForm
+from django.contrib.auth.decorators import login_required, user_passes_test
 
+def is_gestor_portfolio(user):
+    return user.is_authenticated and user.groups.filter(name="gestor-portfolio").exists()
 
 def profile_view(request):
     profile = Profile.objects.first()
-    return render(request, "portfolio/profile.html", {"profile": profile})
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/profile.html", {"profile": profile, "is_gestor": is_gestor})
 
 
 def projects_view(request):
     projects = Project.objects.all()
-    return render(request, "portfolio/projects.html", {"projects": projects})
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/projects.html", {"projects": projects, "is_gestor": is_gestor})
 
 
 def skills_view(request):
     skills = Skill.objects.all()
-    return render(request, "portfolio/skills.html", {"skills": skills})
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/skills.html", {"skills": skills, "is_gestor": is_gestor})
 
 
 def techs_view(request):
     techs = Tech.objects.all()
-    return render(request, "portfolio/techs.html", {"techs": techs})
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/techs.html", {"techs": techs, "is_gestor": is_gestor})
 
 
 def courses_view(request):
     courses = Course.objects.all()
-    return render(request, "portfolio/courses.html", {"courses": courses})
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/courses.html", {"courses": courses, "is_gestor": is_gestor})
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def project_create(request):
     form = ProjectForm(request.POST or None, request.FILES or None)
 
@@ -37,7 +46,8 @@ def project_create(request):
 
     return render(request, "portfolio/form.html", {"form": form, "title": "Criar Projeto"})
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def project_edit(request, pk):
     project = get_object_or_404(Project, pk=pk)
     form = ProjectForm(request.POST or None, request.FILES or None, instance=project)
@@ -48,7 +58,8 @@ def project_edit(request, pk):
 
     return render(request, "portfolio/form.html", {"form": form, "title": "Editar Projeto"})
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def project_delete(request, pk):
     project = get_object_or_404(Project, pk=pk)
 
@@ -58,7 +69,8 @@ def project_delete(request, pk):
 
     return render(request, "portfolio/confirm_delete.html", {"object": project, "title": "Apagar Projeto"})
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def tech_create(request):
     form = TechForm(request.POST or None)
 
@@ -72,7 +84,8 @@ def tech_create(request):
         "back_url": "techs"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def tech_edit(request, pk):
     tech = get_object_or_404(Tech, pk=pk)
     form = TechForm(request.POST or None, instance=tech)
@@ -87,7 +100,8 @@ def tech_edit(request, pk):
         "back_url": "techs"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def tech_delete(request, pk):
     tech = get_object_or_404(Tech, pk=pk)
 
@@ -101,7 +115,8 @@ def tech_delete(request, pk):
         "back_url": "techs"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def skill_create(request):
     form = SkillForm(request.POST or None)
 
@@ -115,7 +130,8 @@ def skill_create(request):
         "back_url": "skills"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def skill_edit(request, pk):
     skill = get_object_or_404(Skill, pk=pk)
     form = SkillForm(request.POST or None, instance=skill)
@@ -130,7 +146,8 @@ def skill_edit(request, pk):
         "back_url": "skills"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def skill_delete(request, pk):
     skill = get_object_or_404(Skill, pk=pk)
 
@@ -144,7 +161,8 @@ def skill_delete(request, pk):
         "back_url": "skills"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def course_create(request):
     form = CourseForm(request.POST or None)
 
@@ -158,7 +176,8 @@ def course_create(request):
         "back_url": "courses"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def course_edit(request, pk):
     course = get_object_or_404(Course, pk=pk)
     form = CourseForm(request.POST or None, instance=course)
@@ -173,7 +192,8 @@ def course_edit(request, pk):
         "back_url": "courses"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def course_delete(request, pk):
     course = get_object_or_404(Course, pk=pk)
 
@@ -188,16 +208,20 @@ def course_delete(request, pk):
     })
 
 def navigation_map_view(request):
-    return render(request, "portfolio/navigation_map.html")
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/navigation_map.html", {"is_gestor": is_gestor})
 
 def github_view(request):
-    return render(request, "portfolio/github.html")
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
+    return render(request, "portfolio/github.html", {"is_gestor": is_gestor})
 
 def making_of_view(request):
+    is_gestor = request.user.is_authenticated and request.user.groups.filter(name="gestor-portfolio").exists()
     entries = MakingOf.objects.all().order_by("-created_at")
-    return render(request, "portfolio/making_of.html", {"entries": entries})
+    return render(request, "portfolio/making_of.html", {"entries": entries, "is_gestor": is_gestor})
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def making_of_create(request):
     form = MakingOfForm(
         request.POST or None,
@@ -214,7 +238,8 @@ def making_of_create(request):
         "back_url": "making_of"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def making_of_edit(request, pk):
     entry = get_object_or_404(MakingOf, pk=pk)
     form = MakingOfForm(
@@ -233,7 +258,8 @@ def making_of_edit(request, pk):
         "back_url": "making_of"
     })
 
-
+@login_required
+@user_passes_test(is_gestor_portfolio)
 def making_of_delete(request, pk):
     entry = get_object_or_404(MakingOf, pk=pk)
 

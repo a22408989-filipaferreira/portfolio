@@ -1,0 +1,22 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+    <h1>Registo</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="form-btn save-btn">
+            Registar
+        </button>
+
+        <a href="{% url 'login' %}" class="form-btn cancel-btn">
+            Já tenho conta
+        </a>
+    </form>
+</div>
+
+{% endblock %}
